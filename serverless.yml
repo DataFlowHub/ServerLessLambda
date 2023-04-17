@@ -1,0 +1,28 @@
+service: codebase
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+  auth_login:
+    handler: src/auth/login.lambda_handler
+    events:
+      - http:
+          path: /auth/login
+          method: post
+          cors: true
