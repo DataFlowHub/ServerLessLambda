@@ -6,9 +6,18 @@ def hello(event, context):
         "message": "Api Up and running!",
     }
 
-    response = {
+    return {
         "statusCode": 200,
         "body": json.dumps(body)
     }
 
-    return response
+def sayHello(event, context):
+    body = {
+        "message": "Saying Hello!",
+    }
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+

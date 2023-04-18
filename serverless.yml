@@ -16,7 +16,14 @@ functions:
     handler: src/handler.hello
     events:
       - http:
-          path: /
+          path: /hello
+          method: get
+          cors: true
+  sayhello:
+    handler: src/handler.sayhello
+    events:
+      - http:
+          path: /sayhello
           method: get
           cors: true
   auth_login:
