@@ -1,35 +1,30 @@
 service: codebase
 
-frameworkVersion: '3'
+#frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: python3.9
 
-package:
-  exclude:
-    - node_modules/**
-    - venv/**
-
 functions:
-  hello:
+  my-function:
     handler: src/handler.hello
+    layers:
+      - arn:aws:lambda:us-east-1:855802708532:layer:test-mylayer:2
     events:
       - http:
           path: /hello
           method: get
           cors: true
-  sayhello:
-    handler: src/handler.sayhello
-    events:
-      - http:
-          path: /sayhello
-          method: get
-          cors: true
-  auth_login:
-    handler: src/auth/login.lambda_handler
-    events:
-      - http:
-          path: /auth/login
-          method: post
-          cors: true
+
+layers:
+  # A Lambda layer
+  CelestePackage:
+    path: layers
+    name: CelestePackage
+    compatibleRuntimes:
+      - python3.9
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

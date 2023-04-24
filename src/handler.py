@@ -1,7 +1,8 @@
 import json
-
+from mylayer import example
 
 def hello(event, context):
+    print(example.add_one(25))
     body = {
         "message": "Api Up and running!",
     }
@@ -12,6 +13,8 @@ def hello(event, context):
     }
 
 def sayHello(event, context):
+    print(example.add_one(15))
+
     body = {
         "message": "Saying Hello!",
     }

@@ -1,0 +1,3 @@
+def whoami():
+    return "PartnerAPI"
+
